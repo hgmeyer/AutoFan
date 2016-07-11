@@ -1,3 +1,6 @@
 [submodule "code/PiBits"]
 	path = code/PiBits
 	url = https://github.com/richardghirst/PiBits
+[submodule "code/sharedmem-numpy"]
+	path = code/sharedmem-numpy
+	url = https://github.com/sturlamolden/sharedmem-numpy
