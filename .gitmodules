@@ -1,0 +1,3 @@
+[submodule "code/PiBits"]
+	path = code/PiBits
+	url = https://github.com/richardghirst/PiBits
