@@ -1,7 +1,7 @@
 import math
 import multiprocessing
 import time
-
+import copy
 import sharedmem
 
 from Filter import lowpass
@@ -92,22 +92,21 @@ class ServoControl(multiprocessing.Process):
 
             # ...set servo pwm
             self._set_servo_pwm(self._s_h, self.angle_to_pwm(new_horizontal_angle,
-                                                              self._m_horizontal, self._b_horizontal))
+                                                             self._m_horizontal, self._b_horizontal))
             self._set_servo_pwm(self._s_v, self.angle_to_pwm(new_vertical_angle,
-                                                              self._m_vertical, self._b_vertical))
+                                                             self._m_vertical, self._b_vertical))
 
             time.sleep(self._f)
 
     def set_new_angles(self, horizontal_angle, vertical_angle):
-        self._newangles[0] = horizontal_angle.copy()
-        self._newangles[1] = vertical_angle.copy()
+        self._newangles[0] = copy.copy(horizontal_angle)
+        self._newangles[1] = copy.copy(vertical_angle)
 
     def _set_servo_pwm(self, servo, pwm):
         if pwm in range(self._pwm_min, self._pwm_max, 1):
             self._servoblaster.write(str(servo) + '=' + str(pwm) + '\n')
             self._servoblaster.flush()
 
-    @staticmethod
     def angle_to_pwm(self, angle, m, b):
         if math.isnan(angle):
             return self._pwm_min
@@ -123,7 +122,7 @@ if __name__ == '__main__':
     servocontrol.start()
 
     while True:
-        servocontrol.set_new_angles(60.0, 60.0)
-        time.sleep(0.5)
-        servocontrol.set_new_angles(100.0, 100.0)
-        time.sleep(0.5)
+        servocontrol.set_new_angles(30, 30)
+        time.sleep(1)
+        servocontrol.set_new_angles(-30, -30)
+        time.sleep(1)
