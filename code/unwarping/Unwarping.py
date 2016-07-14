@@ -4,7 +4,6 @@ import time
 import cv2
 import sharedmem
 
-
 class Unwarping(multiprocessing.Process):
     def __init__(self, x, y, K, d, camid=0, visualize=False, debug=False):
 
@@ -97,3 +96,26 @@ class Unwarping(multiprocessing.Process):
 
     def get_current_frame(self):
         return self._currentframe
+
+if __name__ == '__main__':
+    import numpy as np
+
+    # width and height of camera image
+    x = 320
+    y = 240
+    # focal lengths
+    f_x = 336.9841946
+    f_y = 338.042332295
+    # center coordinates
+    c_x = 171.843191155
+    c_y = 122.65932699
+    # distortion coefficients
+    d = 5.44787247e-02, 1.23043244e-01, -4.52559581e-04, 5.47011732e-03, -6.83110234e-01
+
+    # Construct camera matrix
+    K = np.array([[f_x, 0., c_x],
+                  [0., f_y, c_y],
+                  [0., 0., 1.]])
+
+    unwarper = Unwarping(x, y, K, d, visualize=True, debug=True)
+    unwarper.start()
