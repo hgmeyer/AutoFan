@@ -1,7 +1,7 @@
 # AutoFan
 ![](https://cdn.hackaday.io/images/874361467020583130.png)
 
-AutoFan is a prototype for a device which automatically points the direction of airflow of a fan into or away from a face. It uses a *low-cost camera* (e.g. a webcam), a *Raspberry Pi 2*, a *face recognition algorithm* and two *servo motors* for controlling the *lamellae of a fan*. By inferring the position of a face from the camera images the servo motor angles are adjusted to point the airflow into or away from the face.
+AutoFan is a prototype for controlling the direction of air flow of a fan based on computer vision in order to avoid fatigue during long distance car drives. It uses a *low-cost camera* (e.g. a webcam), a *Raspberry Pi 2*, a *face recognition algorithm*, an algorithm for *eye blink detection* and two *servo motors* controlling the lamellae of a *custom-made fan*. By inferring the position of a face from the camera images the servo motor angles are adjusted to point the airflow into (or away) from the face. By measuring eye blink frequency the system automatically points the air flow into the direction of the driver's face if the driver has been detected to be tired.
 
 **Please note:** This is the repository for a project hosted on [hackaday.io](http://hackaday.io/). Please visit the [project page](https://hackaday.io/project/12384-autofan-automated-air-flow-direction-control) for more information.
 
